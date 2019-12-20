@@ -13,8 +13,10 @@ class Menu {
       child: ListView(
         children: <Widget>[
           ExpansionTile(
-              title: ListTile(
-                  title: Text("Bots"), trailing: Icon(Icons.recent_actors)),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[Text("Bot"), Icon(Icons.recent_actors)],
+              ),
               children: <Widget>[
                 ListTile(
                     title: Text("Add bot"),
