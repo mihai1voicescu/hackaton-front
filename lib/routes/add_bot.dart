@@ -33,81 +33,68 @@ class _AddBotState extends State<AddBot> {
 
   @override
   Widget build(BuildContext context) {
+    var children = [
+      Text(
+        'Add new Bot',
+        style: TextStyle(fontSize: 20),
+      ),
+      TextFormField(
+          controller: _nameController,
+          maxLength: 30,
+          maxLines: 1,
+          keyboardType: TextInputType.text,
+          decoration: InputDecoration(labelText: "Name")),
+      Container(
+        decoration: BoxDecoration(border: Border.all()),
+        child: TextFormField(
+            controller: _sourceController,
+            maxLength: null,
+            keyboardType: TextInputType.multiline,
+            maxLines: null,
+            decoration: InputDecoration(labelText: "Source")),
+      ),
+      RaisedButton.icon(
+          onPressed: () async {
+            if (_formKey.currentState.validate()) {
+              _formKey.currentState.save();
+
+              try {
+                await Services().putBot();
+              } catch (e) {
+                _failedAsync = true;
+
+                return;
+              }
+
+              Navigator.pop(context);
+            }
+          },
+          icon: Icon(Icons.add),
+          label: Text('Add Bot'))
+    ]
+//        .map((e) => FractionallySizedBox(
+//              widthFactor: 0.9,
+//              heightFactor: 0.9,
+//              child: e,
+//            ))
+        .toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Add Bot"),
       ),
       body: Center(
-        child: FractionallySizedBox(
-          widthFactor: 0.9,
-          heightFactor: 0.9,
-          child: Form(
-            autovalidate: true,
-            key: _formKey,
-            child: ListView(
+        child: Form(
+          autovalidate: true,
+          key: _formKey,
+          child: Scrollbar(
+            child: FractionallySizedBox(
+              widthFactor: 0.9,
+              heightFactor: 0.9,
+              child: ListView(
 //              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Add new Bot',
-                  style: TextStyle(fontSize: 20),
-                ),
-                TextFormField(
-                    controller: _nameController,
-                    maxLength: 30,
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(labelText: "Name")),
-                Container(
-                  decoration: BoxDecoration(border: Border.all()),
-                  child: TextFormField(
-                      controller: _sourceController,
-                      maxLength: null,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: null,
-                      decoration: InputDecoration(labelText: "Source")),
-                ),
-//                SearchWidget<String>(
-//                  dataList: Services().getAvailableStocks(),
-//                  hideSearchBoxWhenItemSelected: true,
-//                  listContainerHeight: MediaQuery.of(context).size.height / 4,
-//                  queryBuilder: (String query, List<String> list) {
-//                    return list
-//                        .where((String item) =>
-//                            item.toLowerCase().contains(query.toLowerCase()))
-//                        .toList();
-//                  },
-////                  popupListItemBuilder: (String item) {
-////                    return PopupListItemWidget(item);
-////                  },
-////                  selectedItemBuilder: (String selectedItem, VoidCallback deleteSelectedItem) {
-////                    return SelectedItemWidget(selectedItem, deleteSelectedItem);
-////                  },
-////                  // widget customization
-//////                  noItemsFoundWidget: NoItemsFound(),
-////                  textFieldBuilder: (TextEditingController controller, FocusNode focusNode) {
-////                    return MyTextField(controller, focusNode);
-////                  },
-//                ),
-
-                RaisedButton.icon(
-                    onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        _formKey.currentState.save();
-
-                        try {
-                          await Services().putBot();
-                        } catch (e) {
-                          _failedAsync = true;
-
-                          return;
-                        }
-
-                        Navigator.pop(context);
-                      }
-                    },
-                    icon: Icon(Icons.add),
-                    label: Text('Add Bot'))
-              ],
+                children: children,
+              ),
             ),
           ),
         ),
