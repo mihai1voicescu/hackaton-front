@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
-              child: Text('Launch screen'),
+              child: Text('Welcome to Yoogle'),
               onPressed: () {
                 // Navigate to the second screen using a named route.
                 Navigator.pushNamed(context, '/second');

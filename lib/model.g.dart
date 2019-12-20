@@ -52,3 +52,17 @@ Map<String, dynamic> _$StockInfoToJson(StockInfo instance) => <String, dynamic>{
       'stockPoints': instance.stockPoints,
       'name': instance.name,
     };
+
+Bot _$BotFromJson(Map<String, dynamic> json) {
+  return Bot(
+    json['name'] as String,
+    json['symbol'] as String,
+    json['code'] as String,
+  );
+}
+
+Map<String, dynamic> _$BotToJson(Bot instance) => <String, dynamic>{
+      'name': instance.name,
+      'symbol': instance.symbol,
+      'code': instance.code,
+    };

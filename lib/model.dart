@@ -40,3 +40,14 @@ class StockInfo {
 
   Map<String, dynamic> toJson() => _$StockInfoToJson(this);
 }
+
+@JsonSerializable(nullable: false)
+class Bot {
+  final String name, symbol, code;
+
+  Bot(this.name, this.symbol, this.code);
+
+  factory Bot.fromJson(Map<String, dynamic> json) => _$BotFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BotToJson(this);
+}

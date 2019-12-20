@@ -4,8 +4,12 @@ import 'package:hackaton_front/fake.dart';
 import 'package:hackaton_front/model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:http/http.dart';
+
 class Services {
   static final Services _singleton = Services._internal();
+
+  static const String _url = "127.0.0.1";
 
   bool loggedIn = false, _started = false;
   SharedPreferences _sharedPreferences;
@@ -47,6 +51,11 @@ class Services {
     loggedIn = true;
 
     return true;
+  }
+
+  Future<void> addBot(Bot bot) async {
+//    String url = 'https://jsonplaceholder.typicode.com/posts';
+//    await get(url);
   }
 
   Future<bool> putBot() async {
