@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackaton_front/routes/add_bot.dart';
 
 class Menu {
@@ -15,7 +16,7 @@ class Menu {
           ExpansionTile(
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[Text("Bot"), Icon(Icons.recent_actors)],
+                children: <Widget>[Text("Bot"), Icon(FontAwesomeIcons.robot)],
               ),
               children: <Widget>[
                 ListTile(

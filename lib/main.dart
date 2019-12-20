@@ -24,12 +24,15 @@ import 'package:hackaton_front/routes/login.dart';
 import 'package:hackaton_front/routes/main.dart';
 import 'package:hackaton_front/services.dart';
 
+import 'package:font_awesome_flutter/icon_data.dart';
+
 import 'routes/add_bot.dart';
 import 'routes/second.dart';
 
 void main() {
 //  var initialRoute = Services().loggedIn ? MainScreen.route : Login.route;
 
+  var theme = ThemeData(brightness: Brightness.dark, fontFamily: 'Montserrat');
   print("startup");
   Services()
       .startup()
@@ -38,6 +41,7 @@ void main() {
             // Start the app with the "/" named route. In this case, the app starts
             // on the FirstScreen widget.
             initialRoute: MainScreen.route,
+            theme: theme,
             routes: {
               // When navigating to the "/" route, build the FirstScreen widget.
               MainScreen.route: (context) => MainScreen(),
