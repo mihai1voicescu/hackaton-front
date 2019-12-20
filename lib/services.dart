@@ -39,7 +39,8 @@ class Services {
   List<String> getAvailableStocks() => ["APPL", "GOOG", "DOWJ"];
 
   Future<StockInfo> getStockInfo() async {
-    return StockInfo.fromJson(jsonDecode(Fake().trade()));
+    var m = jsonDecode(Fake().trade());
+    return StockInfo.fromJson(m);
   }
 
   Future<bool> doLogin(String username, String password) async {

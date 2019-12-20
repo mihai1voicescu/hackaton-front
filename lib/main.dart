@@ -29,6 +29,7 @@ import 'package:font_awesome_flutter/icon_data.dart';
 
 import 'routes/add_bot.dart';
 import 'routes/second.dart';
+import 'routes/stock.dart';
 
 void main() {
 //  var initialRoute = Services().loggedIn ? MainScreen.route : Login.route;
@@ -64,6 +65,7 @@ void main() {
               Login.route: (context) => Login(),
               AddBot.route: (context) => AddBot(),
               IPython.route: (context) => IPython(),
+              Stock.route: (context) => Stock(),
 //      '/dummy': (context) => Dummy(),
             },
           )))

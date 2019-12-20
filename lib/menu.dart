@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackaton_front/routes/add_bot.dart';
 import 'package:hackaton_front/routes/ipython.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'routes/stock.dart';
 //import 'package:webview_flutter/webview_flutter.dart';
 
 class Menu {
@@ -39,6 +41,10 @@ class Menu {
             title: Text("IPython"),
             trailing: Icon(Icons.code),
             onTap: iPythonHandler),
+        ListTile(
+            title: Text("Chart"),
+            trailing: Icon(Icons.chat),
+            onTap: () => Navigator.popAndPushNamed(context, Stock.route)),
       ]),
     );
   }

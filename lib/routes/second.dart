@@ -10,7 +10,7 @@ Future<StockInfo> stockFuture() {}
 
 Widget createChart(BuildContext context, AsyncSnapshot snapshot) {
   print(snapshot);
-  if(snapshot.data) {
+  if (snapshot.data) {
     var points = snapshot.data.stockPoints;
     var chartseries = Extractor.chartTimeSeries(points);
     var chart = TimeSeriesLineAnnotationChart(chartseries);
@@ -26,9 +26,7 @@ Widget createChart(BuildContext context, AsyncSnapshot snapshot) {
   } else {
     return CircularProgressIndicator();
   }
-
 }
-
 
 class SecondScreen extends StatelessWidget {
   static const route = "/second";
@@ -82,7 +80,6 @@ class TimeSeriesLineAnnotationChart extends StatelessWidget {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return new charts.TimeSeriesChart(seriesList, animate: animate, behaviors: [
@@ -124,7 +121,3 @@ class TimeSeriesSales {
 
   TimeSeriesSales(this.time, this.sales);
 }
-
-
-
-
