@@ -43,11 +43,49 @@ class StockInfo {
 
 @JsonSerializable(nullable: false)
 class Bot {
-  final String name, symbol, code;
+  final String name, code;
 
-  Bot(this.name, this.symbol, this.code);
+  Bot(this.name, this.code);
 
   factory Bot.fromJson(Map<String, dynamic> json) => _$BotFromJson(json);
 
   Map<String, dynamic> toJson() => _$BotToJson(this);
+}
+
+@JsonSerializable(nullable: false)
+class Prediction {
+  final List<Point> series;
+  final List<Action> actions;
+
+  Prediction(this.series, this.actions);
+
+  factory Prediction.fromJson(Map<String, dynamic> json) =>
+      _$PredictionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PredictionToJson(this);
+}
+
+@JsonSerializable(nullable: false)
+class Point {
+  DateTime point;
+  double value;
+
+  Point(this.point, this.value);
+
+  factory Point.fromJson(Map<String, dynamic> json) => _$PointFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PointToJson(this);
+}
+
+@JsonSerializable(nullable: false)
+class Action {
+  DateTime point;
+  double value;
+  int amount;
+
+  Action(this.point, this.value, this.amount);
+
+  factory Action.fromJson(Map<String, dynamic> json) => _$ActionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ActionToJson(this);
 }

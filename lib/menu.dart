@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackaton_front/routes/add_bot.dart';
+import 'package:hackaton_front/routes/bots.dart';
 import 'package:hackaton_front/routes/ipython.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,6 +32,11 @@ class Menu {
               children: <Widget>[Text("Bot"), Icon(FontAwesomeIcons.robot)],
             ),
             children: <Widget>[
+              ListTile(
+                  title: Text("My Bots"),
+                  trailing: Icon(FontAwesomeIcons.addressBook),
+                  onTap: () =>
+                      Navigator.popAndPushNamed(context, BotsPage.route)),
               ListTile(
                   title: Text("Add bot"),
                   trailing: Icon(Icons.add),

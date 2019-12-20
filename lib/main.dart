@@ -19,6 +19,7 @@
 //}
 
 import 'package:flutter/material.dart';
+import 'package:hackaton_front/routes/bots.dart';
 import 'package:hackaton_front/routes/dumy.dart';
 import 'package:hackaton_front/routes/ipython.dart';
 import 'package:hackaton_front/routes/login.dart';
@@ -66,6 +67,7 @@ void main() {
               AddBot.route: (context) => AddBot(),
               IPython.route: (context) => IPython(),
               Stock.route: (context) => Stock(),
+              BotsPage.route: (context) => BotsPage(),
 //      '/dummy': (context) => Dummy(),
             },
           )))

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:search_widget/search_widget.dart';
+import 'package:hackaton_front/model.dart';
 
 import '../services.dart';
-import 'main.dart';
 
 class AddBot extends StatefulWidget {
   static const route = "/create_bot";
@@ -62,7 +61,8 @@ class _AddBotState extends State<AddBot> {
               _formKey.currentState.save();
 
               try {
-                await Services().putBot();
+                await Services()
+                    .addBot(Bot(_nameController.text, _sourceController.text));
               } catch (e) {
                 _failedAsync = true;
 

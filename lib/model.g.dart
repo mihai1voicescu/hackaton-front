@@ -56,13 +56,54 @@ Map<String, dynamic> _$StockInfoToJson(StockInfo instance) => <String, dynamic>{
 Bot _$BotFromJson(Map<String, dynamic> json) {
   return Bot(
     json['name'] as String,
-    json['symbol'] as String,
     json['code'] as String,
   );
 }
 
 Map<String, dynamic> _$BotToJson(Bot instance) => <String, dynamic>{
       'name': instance.name,
-      'symbol': instance.symbol,
       'code': instance.code,
+    };
+
+Prediction _$PredictionFromJson(Map<String, dynamic> json) {
+  return Prediction(
+    (json['series'] as List)
+        .map((e) => Point.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    (json['actions'] as List)
+        .map((e) => Action.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
+}
+
+Map<String, dynamic> _$PredictionToJson(Prediction instance) =>
+    <String, dynamic>{
+      'series': instance.series,
+      'actions': instance.actions,
+    };
+
+Point _$PointFromJson(Map<String, dynamic> json) {
+  return Point(
+    DateTime.parse(json['point'] as String),
+    (json['value'] as num).toDouble(),
+  );
+}
+
+Map<String, dynamic> _$PointToJson(Point instance) => <String, dynamic>{
+      'point': instance.point.toIso8601String(),
+      'value': instance.value,
+    };
+
+Action _$ActionFromJson(Map<String, dynamic> json) {
+  return Action(
+    DateTime.parse(json['point'] as String),
+    (json['value'] as num).toDouble(),
+    json['amount'] as int,
+  );
+}
+
+Map<String, dynamic> _$ActionToJson(Action instance) => <String, dynamic>{
+      'point': instance.point.toIso8601String(),
+      'value': instance.value,
+      'amount': instance.amount,
     };
