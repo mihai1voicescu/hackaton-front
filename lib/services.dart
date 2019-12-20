@@ -1,9 +1,11 @@
 import 'package:hackaton_front/model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Services {
   static final Services _singleton = Services._internal();
 
   bool loggedIn = false;
+  SharedPreferences _sharedPreferences;
   User user;
 
   factory Services() {
@@ -23,5 +25,11 @@ class Services {
     return true;
   }
 
-  Services._internal();
+  Services._internal() {
+    SharedPreferences.getInstance().then((prefs) {
+      _sharedPreferences = prefs;
+
+      return;
+    });
+  }
 }
