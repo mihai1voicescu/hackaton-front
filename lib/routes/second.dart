@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatelessWidget {
+  static const route = "/second";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

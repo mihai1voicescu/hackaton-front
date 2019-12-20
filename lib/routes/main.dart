@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
+  static const route = "/";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
