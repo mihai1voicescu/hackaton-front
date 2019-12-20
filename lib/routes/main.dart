@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../menu.dart';
+
 class MainScreen extends StatelessWidget {
   static const route = "/main";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('First Screen'),
-      ),
+      drawer: Menu().getMainDrawer(),
+      appBar: Menu().getMainAppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
