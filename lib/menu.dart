@@ -12,10 +12,16 @@ class Menu {
     return Drawer(
       child: ListView(
         children: <Widget>[
-          ListTile(
-              title: Text("Add bot"),
-              trailing: Icon(Icons.add),
-              onTap: () => Navigator.popAndPushNamed(context, AddBot.route)),
+          ExpansionTile(
+              title: ListTile(
+                  title: Text("Bots"), trailing: Icon(Icons.recent_actors)),
+              children: <Widget>[
+                ListTile(
+                    title: Text("Add bot"),
+                    trailing: Icon(Icons.add),
+                    onTap: () =>
+                        Navigator.popAndPushNamed(context, AddBot.route)),
+              ]),
         ],
       ),
     );
