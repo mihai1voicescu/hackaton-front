@@ -32,6 +32,10 @@ class Services {
     return user;
   }
 
+  Future<StockInfo> getStockInfo() async {
+    return StockInfo.fromJson(jsonDecode(Fake().trade()));
+  }
+
   Future<bool> doLogin(String username, String password) async {
     assert(username == "johnd");
     assert(password == "pass");
