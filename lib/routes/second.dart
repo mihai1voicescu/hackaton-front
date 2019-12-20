@@ -1,19 +1,37 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:hackaton_front/services.dart';
+import 'package:hackaton_front/extractors.dart';
+import 'package:hackaton_front/model.dart';
+
+Future<StockInfo> stockFuture() {}
+
+Widget createChart(BuildContext context, AsyncSnapshot snapshot) {
+  print(snapshot);
+  if(snapshot.data) {
+    var points = snapshot.data.stockPoints;
+    var chartseries = Extractor.chartTimeSeries(points);
+    var chart = TimeSeriesLineAnnotationChart(chartseries);
+
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index) {
+        return SizedBox(
+          height: 400.0,
+          child: chart,
+        );
+      },
+    );
+  } else {
+    return CircularProgressIndicator();
+  }
+
+}
+
 
 class SecondScreen extends StatelessWidget {
   static const route = "/second";
-
-  static var chart = TimeSeriesLineAnnotationChart(
-      TimeSeriesLineAnnotationChart._createSampleData());
-
-  var chartWidget = new Padding(
-    padding: new EdgeInsets.all(32.0),
-    child: new SizedBox(
-      height: 400.0,
-      child: chart,
-    ),
-  );
 
   // StockPoint list in "data" -> close (double) | timestamp (DateTime)
 
@@ -36,7 +54,12 @@ class SecondScreen extends StatelessWidget {
               },
               child: Text('Go back!'),
             ),
-            chartWidget,
+            FutureBuilder(
+                future: Services().getStockInfo(),
+                initialData: [],
+                builder: (context, snapshot) {
+                  return createChart(context, snapshot);
+                }),
           ],
         ),
       ),
@@ -58,6 +81,7 @@ class TimeSeriesLineAnnotationChart extends StatelessWidget {
       animate: false,
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,3 +124,7 @@ class TimeSeriesSales {
 
   TimeSeriesSales(this.time, this.sales);
 }
+
+
+
+
