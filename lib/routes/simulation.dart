@@ -20,20 +20,36 @@ class Sim extends StatefulWidget {
 class _SimState extends State<Sim> {
   @override
   Widget build(BuildContext context) {
-    var chartseries =
-        Extractor.chartTimeSeriesPoint(Services().lastPrediction.series);
+    var lp = Services().lastPrediction;
+    var chartseries = Extractor.chartTimeSeriesPoint(lp.series);
 
-    return FractionallySizedBox(
-      widthFactor: 0.9,
-      heightFactor: 0.9,
-      child: charts.TimeSeriesChart(
-        [chartseries],
-        animate: false,
-        behaviors: [
-          charts.SeriesLegend(),
-          charts.PanAndZoomBehavior(),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Simulation results"),
       ),
+      body: Center(
+          child: Column(
+        children: <Widget>[
+          ListTile(
+            title: Text("Balance"),
+            trailing: Text("${lp.balance}"),
+          ),
+          ListTile(
+            title: Text("Stocks"),
+            trailing: Text("${lp.stocks}"),
+          ),
+          Expanded(
+            child: charts.TimeSeriesChart(
+              chartseries,
+              animate: false,
+              behaviors: [
+                charts.SeriesLegend(),
+                charts.PanAndZoomBehavior(),
+              ],
+            ),
+          ),
+        ],
+      )),
     );
   }
 }
