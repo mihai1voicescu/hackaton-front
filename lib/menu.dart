@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackaton_front/routes/add_bot.dart';
 
 class Menu {
   static final Menu _singleton = Menu._internal();
@@ -7,14 +8,14 @@ class Menu {
     return _singleton;
   }
 
-  Drawer getMainDrawer() {
+  Drawer getMainDrawer(BuildContext context) {
     return Drawer(
       child: ListView(
         children: <Widget>[
           ListTile(
-            title: Text("Ttem 1"),
-            trailing: Icon(Icons.arrow_forward),
-          ),
+              title: Text("Add bot"),
+              trailing: Icon(Icons.add),
+              onTap: () => Navigator.popAndPushNamed(context, AddBot.route)),
         ],
       ),
     );

@@ -3,7 +3,7 @@ import 'package:hackaton_front/routes/main.dart';
 import 'package:hackaton_front/services.dart';
 
 class Login extends StatefulWidget {
-  static const route = "/";
+  static const route = "/login";
 
   @override
   _LoginState createState() => _LoginState();

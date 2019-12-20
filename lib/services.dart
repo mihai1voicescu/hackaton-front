@@ -32,6 +32,8 @@ class Services {
     return user;
   }
 
+  List<String> getAvailableStocks() => ["APPL", "GOOG", "DOWJ"];
+
   Future<StockInfo> getStockInfo() async {
     return StockInfo.fromJson(jsonDecode(Fake().trade()));
   }
@@ -44,6 +46,10 @@ class Services {
     _sharedPreferences.setString("user", jsonEncode(user));
     loggedIn = true;
 
+    return true;
+  }
+
+  Future<bool> putBot() async {
     return true;
   }
 

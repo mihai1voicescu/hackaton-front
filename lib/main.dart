@@ -24,10 +24,11 @@ import 'package:hackaton_front/routes/login.dart';
 import 'package:hackaton_front/routes/main.dart';
 import 'package:hackaton_front/services.dart';
 
+import 'routes/add_bot.dart';
 import 'routes/second.dart';
 
 void main() {
-  var initialRoute = Services().loggedIn ? MainScreen.route : Login.route;
+//  var initialRoute = Services().loggedIn ? MainScreen.route : Login.route;
 
   print("startup");
   Services()
@@ -36,7 +37,7 @@ void main() {
             title: 'Named Routes Demo',
             // Start the app with the "/" named route. In this case, the app starts
             // on the FirstScreen widget.
-            initialRoute: initialRoute,
+            initialRoute: MainScreen.route,
             routes: {
               // When navigating to the "/" route, build the FirstScreen widget.
               MainScreen.route: (context) => MainScreen(),
@@ -44,6 +45,7 @@ void main() {
               SecondScreen.route: (context) => SecondScreen(),
               MyHomePage.route: (context) => MyHomePage(),
               Login.route: (context) => Login(),
+              AddBot.route: (context) => AddBot(),
 //      '/dummy': (context) => Dummy(),
             },
           )))

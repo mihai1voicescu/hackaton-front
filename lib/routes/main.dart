@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../menu.dart';
 
 class MainScreen extends StatelessWidget {
-  static const route = "/main";
+  static const route = "/";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Menu().getMainDrawer(),
+      drawer: Menu().getMainDrawer(context),
       appBar: Menu().getMainAppBar(),
       body: Center(
         child: Column(
