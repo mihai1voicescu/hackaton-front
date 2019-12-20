@@ -13,6 +13,7 @@ class AddBot extends StatefulWidget {
 
 class _AddBotState extends State<AddBot> {
   final _nameController = TextEditingController();
+  final _sourceController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   var _failedAsync = false;
 
@@ -37,13 +38,14 @@ class _AddBotState extends State<AddBot> {
         title: Text("Add Bot"),
       ),
       body: Center(
-        child: Container(
-          width: 300,
+        child: FractionallySizedBox(
+          widthFactor: 0.9,
+          heightFactor: 0.9,
           child: Form(
             autovalidate: true,
             key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: ListView(
+//              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
                   'Add new Bot',
@@ -55,6 +57,15 @@ class _AddBotState extends State<AddBot> {
                     maxLines: 1,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(labelText: "Name")),
+                Container(
+                  decoration: BoxDecoration(border: Border.all()),
+                  child: TextFormField(
+                      controller: _sourceController,
+                      maxLength: null,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      decoration: InputDecoration(labelText: "Source")),
+                ),
 //                SearchWidget<String>(
 //                  dataList: Services().getAvailableStocks(),
 //                  hideSearchBoxWhenItemSelected: true,

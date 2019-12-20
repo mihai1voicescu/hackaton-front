@@ -31,7 +31,7 @@ class Menu {
 
   AppBar getMainAppBar() {
     return AppBar(
-      title: Text('First Screen'),
+      title: Text('Yoogle'),
       actions: <Widget>[
         // action button
         IconButton(
