@@ -29,19 +29,23 @@ import 'routes/second.dart';
 void main() {
   var initialRoute = Services().loggedIn ? MainScreen.route : Login.route;
 
-  runApp(MaterialApp(
-    title: 'Named Routes Demo',
-    // Start the app with the "/" named route. In this case, the app starts
-    // on the FirstScreen widget.
-    initialRoute: initialRoute,
-    routes: {
-      // When navigating to the "/" route, build the FirstScreen widget.
-      MainScreen.route: (context) => MainScreen(),
-      // When navigating to the "/second" route, build the SecondScreen widget.
-      SecondScreen.route: (context) => SecondScreen(),
-      MyHomePage.route: (context) => MyHomePage(),
-      Login.route: (context) => Login(),
+  print("startup");
+  Services()
+      .startup()
+      .then((v) => runApp(MaterialApp(
+            title: 'Named Routes Demo',
+            // Start the app with the "/" named route. In this case, the app starts
+            // on the FirstScreen widget.
+            initialRoute: initialRoute,
+            routes: {
+              // When navigating to the "/" route, build the FirstScreen widget.
+              MainScreen.route: (context) => MainScreen(),
+              // When navigating to the "/second" route, build the SecondScreen widget.
+              SecondScreen.route: (context) => SecondScreen(),
+              MyHomePage.route: (context) => MyHomePage(),
+              Login.route: (context) => Login(),
 //      '/dummy': (context) => Dummy(),
-    },
-  ));
+            },
+          )))
+      .catchError((err) => print(err));
 }
