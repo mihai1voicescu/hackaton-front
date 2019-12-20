@@ -4,8 +4,9 @@ import 'package:charts_flutter/flutter.dart' as charts;
 class SecondScreen extends StatelessWidget {
   static const route = "/second";
 
-  static var chart = TimeSeriesLineAnnotationChart(TimeSeriesLineAnnotationChart._createSampleData());
-      
+  static var chart = TimeSeriesLineAnnotationChart(
+      TimeSeriesLineAnnotationChart._createSampleData());
+
   var chartWidget = new Padding(
     padding: new EdgeInsets.all(32.0),
     child: new SizedBox(
@@ -58,7 +59,6 @@ class TimeSeriesLineAnnotationChart extends StatelessWidget {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return new charts.TimeSeriesChart(seriesList, animate: animate, behaviors: [
@@ -100,8 +100,3 @@ class TimeSeriesSales {
 
   TimeSeriesSales(this.time, this.sales);
 }
-
-
-
-
-

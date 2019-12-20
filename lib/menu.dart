@@ -1,6 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hackaton_front/routes/add_bot.dart';
+import 'package:hackaton_front/routes/ipython.dart';
+import 'package:url_launcher/url_launcher.dart';
+//import 'package:webview_flutter/webview_flutter.dart';
 
 class Menu {
   static final Menu _singleton = Menu._internal();
@@ -10,23 +14,32 @@ class Menu {
   }
 
   Drawer getMainDrawer(BuildContext context) {
+    var iPythonHandler = !kIsWeb
+        ? () => Navigator.popAndPushNamed(context, IPython.route)
+        : () {
+            Navigator.pop(context);
+            _launchURL();
+          };
+
     return Drawer(
-      child: ListView(
-        children: <Widget>[
-          ExpansionTile(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[Text("Bot"), Icon(FontAwesomeIcons.robot)],
-              ),
-              children: <Widget>[
-                ListTile(
-                    title: Text("Add bot"),
-                    trailing: Icon(Icons.add),
-                    onTap: () =>
-                        Navigator.popAndPushNamed(context, AddBot.route)),
-              ]),
-        ],
-      ),
+      child: ListView(children: <Widget>[
+        ExpansionTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[Text("Bot"), Icon(FontAwesomeIcons.robot)],
+            ),
+            children: <Widget>[
+              ListTile(
+                  title: Text("Add bot"),
+                  trailing: Icon(Icons.add),
+                  onTap: () =>
+                      Navigator.popAndPushNamed(context, AddBot.route)),
+            ]),
+        ListTile(
+            title: Text("IPython"),
+            trailing: Icon(Icons.code),
+            onTap: iPythonHandler),
+      ]),
     );
   }
 
@@ -58,6 +71,15 @@ class Menu {
   }
 
   Menu._internal();
+
+  _launchURL() async {
+    const url = 'https://flutter.dev';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }
 
 class Choice {

@@ -74,13 +74,7 @@ class _AddBotState extends State<AddBot> {
           },
           icon: Icon(Icons.add),
           label: Text('Add Bot'))
-    ]
-//        .map((e) => FractionallySizedBox(
-//              widthFactor: 0.9,
-//              heightFactor: 0.9,
-//              child: e,
-//            ))
-        .toList();
+    ].toList();
 
     return Scaffold(
       appBar: AppBar(

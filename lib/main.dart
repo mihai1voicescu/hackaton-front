@@ -20,6 +20,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hackaton_front/routes/dumy.dart';
+import 'package:hackaton_front/routes/ipython.dart';
 import 'package:hackaton_front/routes/login.dart';
 import 'package:hackaton_front/routes/main.dart';
 import 'package:hackaton_front/services.dart';
@@ -45,6 +46,7 @@ void main() {
     ),
   );
   print("startup");
+  WidgetsFlutterBinding.ensureInitialized();
   Services()
       .startup()
       .then((v) => runApp(MaterialApp(
@@ -61,6 +63,7 @@ void main() {
               MyHomePage.route: (context) => MyHomePage(),
               Login.route: (context) => Login(),
               AddBot.route: (context) => AddBot(),
+              IPython.route: (context) => IPython(),
 //      '/dummy': (context) => Dummy(),
             },
           )))
