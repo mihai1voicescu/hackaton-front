@@ -6,6 +6,8 @@ import 'package:hackaton_front/model.dart';
 import 'package:hackaton_front/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'simulation.dart';
+
 class BotsPage extends StatefulWidget {
   static const route = "/bots";
 
@@ -50,7 +52,11 @@ class _BotsPageState extends State<BotsPage> {
                             Navigator.of(context).pop();
 
                             try {
-                              Services().runSimulation(Bot(e, symbol), symbol);
+                              var pre = await Services()
+                                  .runSimulation(Bot(e, symbol), symbol);
+
+                              Services().lastPrediction = pre;
+                              Navigator.of(context).pushNamed(Sim.route);
                             } catch (e) {
                               print(e);
                             }

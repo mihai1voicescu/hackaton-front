@@ -31,6 +31,7 @@ import 'package:font_awesome_flutter/icon_data.dart';
 import 'routes/add_bot.dart';
 import 'routes/second.dart';
 import 'routes/stock.dart';
+import 'routes/simulation.dart';
 
 void main() {
 //  var initialRoute = Services().loggedIn ? MainScreen.route : Login.route;
@@ -68,6 +69,7 @@ void main() {
               IPython.route: (context) => IPython(),
               Stock.route: (context) => Stock(),
               BotsPage.route: (context) => BotsPage(),
+              Sim.route: (context) => Sim(),
 //      '/dummy': (context) => Dummy(),
             },
           )))

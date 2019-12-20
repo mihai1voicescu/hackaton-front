@@ -15,4 +15,13 @@ class Extractor {
       data: list,
     );
   }
+
+  static chartTimeSeriesPoint(List<Point> list) {
+    return charts.Series<Point, DateTime>(
+      id: 'Sales',
+      domainFn: (Point sales, _) => sales.point,
+      measureFn: (Point sales, _) => sales.value,
+      data: list,
+    );
+  }
 }

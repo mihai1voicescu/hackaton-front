@@ -11,6 +11,8 @@ class Services {
 
   static const String _url = "http://127.0.0.1:6969";
 
+  Prediction lastPrediction;
+
   bool loggedIn = false, _started = false;
   SharedPreferences _sharedPreferences;
   User user;
