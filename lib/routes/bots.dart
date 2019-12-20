@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_picker/Picker.dart';
+import 'package:hackaton_front/model.dart';
 import 'package:hackaton_front/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,6 +15,7 @@ class BotsPage extends StatefulWidget {
 
 class _BotsPageState extends State<BotsPage> {
   List<Widget> bots;
+  final _controller = TextEditingController();
 
   @override
   void initState() {
@@ -25,11 +30,54 @@ class _BotsPageState extends State<BotsPage> {
         .map((e) => ListTile(
               title: Text(e),
               trailing: Icon(FontAwesomeIcons.robot),
+              onTap: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    // return object of type Dialog
+                    return AlertDialog(
+                      title: new Text("Name of the Stock"),
+                      content: Container(
+                        child: TextField(
+                          controller: _controller,
+                        ),
+                      ),
+                      actions: <Widget>[
+                        // usually buttons at the bottom of the dialog
+                        new FlatButton(
+                          child: new Text("Close"),
+                          onPressed: () async {
+                            var symbol = _controller.text;
+                            Navigator.of(context).pop();
+
+                            try {
+                              Services().runSimulation(Bot(e, symbol), symbol);
+                            } catch (e) {
+                              print(e);
+                            }
+                          },
+                        ),
+                      ],
+                    );
+                  }),
             ))
         .toList();
 
     setState(() {});
   }
+
+//
+//  showPickerDialog(BuildContext context) {
+//    new Picker(
+//
+//        adapter: PickerDataAdapter<String>(
+//            pickerdata: new JsonDecoder().convert(PickerData)),
+//        hideHeader: true,
+//        title: new Text("Select Data"),
+//        onConfirm: (Picker picker, List value) {
+//          print(value.toString());
+//          print(picker.getSelectedValues());
+//        }).showDialog(context);
+//  }
 
   @override
   Widget build(BuildContext context) {

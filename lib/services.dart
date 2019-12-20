@@ -53,6 +53,8 @@ class Services {
 
   Future<Prediction> runSimulation(Bot bot, String symbol) async {
     var res = await get(_url + "/bot/${bot.name}/predict?symbol=$symbol");
+    print(res.body);
+    print(jsonDecode(res.body));
     return Prediction.fromJson(jsonDecode(res.body));
   }
 

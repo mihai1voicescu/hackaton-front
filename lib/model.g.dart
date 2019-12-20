@@ -68,11 +68,15 @@ Map<String, dynamic> _$BotToJson(Bot instance) => <String, dynamic>{
 Prediction _$PredictionFromJson(Map<String, dynamic> json) {
   return Prediction(
     (json['series'] as List)
-        .map((e) => Point.fromJson(e as Map<String, dynamic>))
-        .toList(),
+        ?.map(
+            (e) => e == null ? null : Point.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     (json['actions'] as List)
-        .map((e) => Action.fromJson(e as Map<String, dynamic>))
-        .toList(),
+        ?.map((e) =>
+            e == null ? null : Action.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    json['balance'] as int,
+    json['stocks'] as int,
   );
 }
 
@@ -80,6 +84,8 @@ Map<String, dynamic> _$PredictionToJson(Prediction instance) =>
     <String, dynamic>{
       'series': instance.series,
       'actions': instance.actions,
+      'balance': instance.balance,
+      'stocks': instance.stocks,
     };
 
 Point _$PointFromJson(Map<String, dynamic> json) {
@@ -97,13 +103,13 @@ Map<String, dynamic> _$PointToJson(Point instance) => <String, dynamic>{
 Action _$ActionFromJson(Map<String, dynamic> json) {
   return Action(
     DateTime.parse(json['point'] as String),
-    (json['value'] as num).toDouble(),
+    json['action'] as String,
     json['amount'] as int,
   );
 }
 
 Map<String, dynamic> _$ActionToJson(Action instance) => <String, dynamic>{
       'point': instance.point.toIso8601String(),
-      'value': instance.value,
+      'action': instance.action,
       'amount': instance.amount,
     };

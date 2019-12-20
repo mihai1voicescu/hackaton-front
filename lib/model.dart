@@ -52,12 +52,13 @@ class Bot {
   Map<String, dynamic> toJson() => _$BotToJson(this);
 }
 
-@JsonSerializable(nullable: false)
+@JsonSerializable(nullable: true)
 class Prediction {
   final List<Point> series;
   final List<Action> actions;
+  final int balance, stocks;
 
-  Prediction(this.series, this.actions);
+  Prediction(this.series, this.actions, this.balance, this.stocks);
 
   factory Prediction.fromJson(Map<String, dynamic> json) =>
       _$PredictionFromJson(json);
@@ -80,10 +81,10 @@ class Point {
 @JsonSerializable(nullable: false)
 class Action {
   DateTime point;
-  double value;
+  String action;
   int amount;
 
-  Action(this.point, this.value, this.amount);
+  Action(this.point, this.action, this.amount);
 
   factory Action.fromJson(Map<String, dynamic> json) => _$ActionFromJson(json);
 
