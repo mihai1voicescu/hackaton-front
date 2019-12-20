@@ -20,17 +20,35 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
 
 StockPoint _$StockPointFromJson(Map<String, dynamic> json) {
   return StockPoint(
-    json['name'] as String,
-    json['value'] as int,
-    DateTime.parse(json['time'] as String),
-    sxName: json['sxName'] as String,
+    DateTime.parse(json['timestamp'] as String),
+    close: (json['close'] as num).toDouble(),
+    high: (json['high'] as num).toDouble(),
+    low: (json['low'] as num).toDouble(),
+    open: (json['open'] as num).toDouble(),
+    volume: json['volume'] as int,
   );
 }
 
 Map<String, dynamic> _$StockPointToJson(StockPoint instance) =>
     <String, dynamic>{
-      'value': instance.value,
-      'time': instance.time.toIso8601String(),
+      'open': instance.open,
+      'high': instance.high,
+      'low': instance.low,
+      'close': instance.close,
+      'volume': instance.volume,
+      'timestamp': instance.timestamp.toIso8601String(),
+    };
+
+StockInfo _$StockInfoFromJson(Map<String, dynamic> json) {
+  return StockInfo(
+    (json['stockPoints'] as List)
+        .map((e) => StockPoint.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    json['name'] as String,
+  );
+}
+
+Map<String, dynamic> _$StockInfoToJson(StockInfo instance) => <String, dynamic>{
+      'stockPoints': instance.stockPoints,
       'name': instance.name,
-      'sxName': instance.sxName,
     };
