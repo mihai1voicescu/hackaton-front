@@ -32,7 +32,18 @@ import 'routes/second.dart';
 void main() {
 //  var initialRoute = Services().loggedIn ? MainScreen.route : Login.route;
 
-  var theme = ThemeData(brightness: Brightness.dark, fontFamily: 'Montserrat');
+  var theme = ThemeData(
+    brightness: Brightness.dark,
+    fontFamily: 'Montserrat',
+    buttonTheme: ButtonThemeData(
+      shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(18.0),
+          side: BorderSide(color: Colors.black)),
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: Colors.orange,
+      ),
+    ),
+  );
   print("startup");
   Services()
       .startup()
