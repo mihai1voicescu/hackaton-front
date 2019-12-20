@@ -15,6 +15,7 @@ class _BotsPageState extends State<BotsPage> {
   @override
   void initState() {
     super.initState();
+    init();
   }
 
   void init() async {
@@ -33,12 +34,15 @@ class _BotsPageState extends State<BotsPage> {
   @override
   Widget build(BuildContext context) {
     var main = bots == null
-        ? ListView(children: bots)
-        : Container(child: CircularProgressIndicator());
+        ? Container(child: CircularProgressIndicator())
+        : ListView(children: bots);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Bot"),
+        title: ListTile(
+          title: Text("My Bots"),
+          trailing: Icon(FontAwesomeIcons.robot),
+        ),
       ),
       body: Center(
         child: Scrollbar(

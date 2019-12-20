@@ -9,7 +9,7 @@ import 'package:http/http.dart';
 class Services {
   static final Services _singleton = Services._internal();
 
-  static const String _url = "127.0.0.1:6969";
+  static const String _url = "http://127.0.0.1:6969";
 
   bool loggedIn = false, _started = false;
   SharedPreferences _sharedPreferences;
@@ -38,15 +38,22 @@ class Services {
 
   List<String> getAvailableStocks() => ["APPL", "GOOG", "DOWJ"];
 
-  Future<List<String>> getBots() async {
+  Future<List<dynamic>> getBots() async {
     var res = await get(_url + "/bots");
 
-    return jsonDecode(res.body);
+    List<String> body = (jsonDecode(res.body) as List<dynamic>).cast<String>();
+
+    return body;
   }
 
   Future<StockInfo> getStockInfo() async {
     var m = jsonDecode(Fake().trade());
     return StockInfo.fromJson(m);
+  }
+
+  Future<Prediction> runSimulation(Bot bot, String symbol) async {
+    var res = await get(_url + "/bot/${bot.name}/predict?symbol=$symbol");
+    return Prediction.fromJson(jsonDecode(res.body));
   }
 
   Future<bool> doLogin(String username, String password) async {
