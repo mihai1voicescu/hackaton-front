@@ -47,11 +47,14 @@ class _AddBotState extends State<AddBot> {
       Container(
         decoration: BoxDecoration(border: Border.all()),
         child: TextFormField(
+            style: TextStyle(fontFamily: "monospace"),
             controller: _sourceController,
             maxLength: null,
             keyboardType: TextInputType.multiline,
             maxLines: null,
-            decoration: InputDecoration(labelText: "Source")),
+            decoration: InputDecoration(
+              labelText: "Source",
+            )),
       ),
       RaisedButton.icon(
           onPressed: () async {
